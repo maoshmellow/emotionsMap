@@ -2,19 +2,28 @@
 <html>
   <head>
     <title>Emotions Map</title>
-    <link rel="icon" type="image/png" href="./textures/appIcon.png"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Language" content="en-EN" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="index.css">
+    
+  <!--   <script type="importmap">
+      {
+        "imports": {
+          "three": "./three/build/three.module.js",
+          "kapsule": "./node_modules/kapsule/dist/kapsule.module.js",
+          "TWEEN":"./node_modules/@tweenjs/tween.js/dist/tween.esm.js"
+        }
+      }
+    </script> -->
 
-    <script src="./three/build/three.min.js"></script>
-    <script src="./tactic/src/three-utils.js"></script>
+    <script type='module' src="index.js"></script>
+    <script type='module' src="init-UI.js"></script>
   </head>
 
   <body>
+
+    <div id="globeViz"></div>
     
-    <!-- client code -->
-    <script src="index.js"></script>
   </body>
 </html>
