@@ -63,7 +63,7 @@ html, body {
   display: grid;
   grid-template-columns: 1fr 14fr 5fr .5fr;
   grid-template-rows: 1.5fr 1fr 3fr;
-  row-gap: 1vh;
+  row-gap: .5vh;
   /* background-color: rgb(0,0,0,.3); */
   /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
 
@@ -93,11 +93,10 @@ html, body {
   display: flex;
   align-items: center;
   justify-items: center;
-  background-color: rgb(0,0,0,.3);
+  background-color: rgb(0,0,0,.5);
   padding:2%;
   border: none;
   border-radius: 5%;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .navItem{
@@ -125,7 +124,7 @@ html, body {
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 14fr 1fr;
-  grid-template-rows: 2.4fr 1fr 19fr 2.5fr 1fr;
+  grid-template-rows: 3.5fr 1fr 19fr 2.5fr 1fr;
   row-gap: 1vh;
 }
 
@@ -136,5 +135,20 @@ html, body {
 
 .globeViz{
   position: relative;
+}
 
+.globeTitle{
+  z-index: 2;
+  grid-row: 4;
+  grid-column: 2;
+  text-align: center;
+  font-family: 'cabin-boldi';
+  font-size: 3vh;
+  color: white;
+  align-self: center;
+  margin:auto;
+  padding: .5%;
+  border: none;
+  border-radius: 5%;
+  background-color: rgb(0,0,0,.5);
 }
