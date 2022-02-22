@@ -2,6 +2,7 @@
 import ThreeGlobe from 'three-globe';
 import * as THREE from 'three';
 import { TrackballControls } from './node_modules/three/examples/jsm/controls/TrackballControls.js';
+import { NearestFilter } from 'three';
 
 var globeContainer = document.getElementById("globeContainer");
 var containerWidth = globeContainer.offsetWidth;
@@ -23,7 +24,8 @@ const Globe = new ThreeGlobe()
 
 // Setup SkyBox
 var skyBox = new THREE.SphereGeometry(10000, 25, 25);
-var textureLoader = new THREE.TextureLoader(), texture = textureLoader.load("./textures/night-sky.png");
+var textureLoader = new THREE.TextureLoader(), texture = textureLoader.load("./textures/night-sky.jpg");
+texture.minFilter = NearestFilter; //gets rid of pole pinching
 var skyMaterial = new THREE.MeshPhongMaterial({
   map:texture,
 })
