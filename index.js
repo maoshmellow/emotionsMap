@@ -15,22 +15,21 @@ const gData = [...Array(N).keys()].map(() => ({
     color: ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]
 }));
 
-
-/* const myGlobe = Globe();
-myGlobe(document.getElementById('globeViz'))
-  /* .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg') */
-  //.globeImageUrl("./textures/earthLights.jpg")
-  //.bumpImageUrl("./textures/bumpMap.jpg")
-  //.backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png')
-  //.width(containerWidth)
-  //.height(containerHeight)
-  //.pointsData(gData); */
-
-
 const Globe = new ThreeGlobe()
   .globeImageUrl("./textures/earthLights.jpg")
   .bumpImageUrl("./textures/bumpMap.jpg")
   .pointsData(gData)
+
+
+// Setup SkyBox
+var skyBox = new THREE.SphereGeometry(10000, 25, 25);
+var textureLoader = new THREE.TextureLoader(), texture = textureLoader.load("./textures/night-sky.png");
+var skyMaterial = new THREE.MeshPhongMaterial({
+  map:texture,
+})
+
+var sky = new THREE.Mesh(skyBox, skyMaterial);
+sky.material.side = THREE.BackSide;
 
 // Setup renderer
 const renderer = new THREE.WebGLRenderer();
@@ -42,12 +41,16 @@ const scene = new THREE.Scene();
 scene.add(Globe);
 scene.add(new THREE.AmbientLight(0xbbbbbb));
 scene.add(new THREE.DirectionalLight(0xffffff, 0.6));
+scene.add(sky);
 
 // Setup camera
 const camera = new THREE.PerspectiveCamera();
 camera.aspect = containerWidth/containerHeight;
+camera.near = .1;
+camera.far = 1000000;
 camera.updateProjectionMatrix();
 camera.position.z = 500;
+
 
 // Add camera controls
 const tbControls = new TrackballControls(camera, renderer.domElement);
