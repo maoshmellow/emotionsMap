@@ -176,6 +176,7 @@ html, body {
 }
 
 #globeButton{
+  pointer-events: all;
   grid-row: 4;
   grid-column: 2;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 0px 250px 19px rgba(210, 210, 210, 0.66);

@@ -24,7 +24,7 @@ const Globe = new ThreeGlobe()
 
 // Setup SkyBox
 var skyBox = new THREE.SphereGeometry(10000, 25, 25);
-var textureLoader = new THREE.TextureLoader(), texture = textureLoader.load("./textures/night-sky.jpg");
+var textureLoader = new THREE.TextureLoader(), texture = textureLoader.load("./textures/night-sky1.jpg");
 texture.minFilter = NearestFilter; //gets rid of pole pinching
 var skyMaterial = new THREE.MeshPhongMaterial({
   map:texture,
