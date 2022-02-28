@@ -34,6 +34,13 @@ html, body {
 }
 
 @font-face {
+  font-family: "cabin-regular";
+  src: url("./fonts/Cabin/Cabin-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: "cabinsemi-regular";
   src: url("./fonts/Cabin_SemiCondensed/Cabin_SemiCondensed-Regular.ttf") format("truetype");
   font-weight: normal;
@@ -139,7 +146,7 @@ html, body {
 
 .globeTitle{
   z-index: 2;
-  grid-row: 4;
+  grid-row: 2;
   grid-column: 2;
   text-align: center;
   font-family: 'cabin-boldi';
@@ -151,4 +158,25 @@ html, body {
   border: none;
   border-radius: 5%;
   background-color: rgb(0,0,0,.5);
+}
+
+.defaultButton{
+  border: none;
+  z-index: 1;
+  outline: none;
+  background-color: #777AD3;
+  color: white;
+  font-family: 'cabin-regular';
+  font-size: 1.5vh;
+  justify-self: center;
+  height: 13.5vh;
+  width:13.5vh;
+  border-style: none;
+  border-radius: 50%;
+}
+
+#globeButton{
+  grid-row: 4;
+  grid-column: 2;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 0px 250px 19px rgba(210, 210, 210, 0.66);
 }
