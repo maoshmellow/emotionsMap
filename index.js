@@ -122,7 +122,7 @@ tbControls.zoomSpeed = 0.8;
 function tweenCamera(targetPosition, duration) {
   tbControls.enabled = false;
 
-  var position = new THREE.Vector3().copy( camera.position );
+  var position = new THREE.Vector3().copy(camera.position);
 
   var tween = new TWEEN.Tween(position)
       .to(targetPosition, duration)
@@ -131,7 +131,26 @@ function tweenCamera(targetPosition, duration) {
           camera.lookAt( tbControls.target );
       } )
       .onComplete(function () {
+          const upDirection = new THREE.Vector3(0, 1, 0);
           camera.position.copy(targetPosition);
+          tweenCameraUp(upDirection, 800);
+      } )
+      .start();
+
+}
+
+function tweenCameraUp(targetPosition, duration) {
+
+  var position = new THREE.Vector3().copy(camera.up);
+
+  var tween = new TWEEN.Tween(position)
+      .to(targetPosition, duration)
+      .onUpdate(function () {
+          camera.up.copy(position);
+          camera.lookAt( tbControls.target );
+      } )
+      .onComplete(function () {
+          camera.up.copy(targetPosition);
           camera.lookAt(tbControls.target );
           tbControls.enabled = true;
       } )
