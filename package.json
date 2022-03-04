@@ -21,6 +21,7 @@
     "snowpack": "^3.8.8"
   },
   "dependencies": {
+    "@tweenjs/tween.js": "^18.6.4",
     "globe.gl": "^2.24.5",
     "three": "^0.137.5",
     "three-globe": "^2.22.1"

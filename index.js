@@ -1,23 +1,38 @@
 /* import Globe from 'globe.gl'; */
 import ThreeGlobe from 'three-globe';
 import * as THREE from 'three';
+import * as TWEEN from '@tweenjs/tween.js'
 import { TrackballControls } from './node_modules/three/examples/jsm/controls/TrackballControls.js';
 import { NearestFilter } from 'three';
+import { Tween } from '@tweenjs/tween.js';
 
 var globeContainer = document.getElementById("globeContainer");
 var containerWidth = globeContainer.offsetWidth;
 var containerHeight = globeContainer.offsetHeight;
 
 const globeButton = document.getElementById("globeButton");
+let spatialCoords;
+let spatialX;
+let spatialY;
+let spatialZ;
 
 
-
+//globe button setup
 function findState(){
   const state = document.getElementById("locationText");
 
   function success(position){
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
+    spatialCoords = Globe.getCoords(latitude, longitude);
+    spatialX = spatialCoords.x;
+    spatialY = spatialCoords.y;
+    spatialZ = spatialCoords.z;
+    
+    const targetPosition = new THREE.Vector3(spatialX, spatialY, spatialZ);
+    let duration = 3000;
+
+    tweenCamera( targetPosition, duration );
 
     const geoApiUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
     fetch(geoApiUrl)
@@ -38,6 +53,8 @@ function findState(){
 
 
 globeButton.addEventListener("click", findState);
+
+//three-globe setup
 
 const N = 300;
 const gData = [...Array(N).keys()].map(() => ({
@@ -87,14 +104,37 @@ camera.position.z = 500;
 
 // Add camera controls
 const tbControls = new TrackballControls(camera, renderer.domElement);
-tbControls.minDistance = 101;
-tbControls.rotateSpeed = 5;
+tbControls.minDistance = 150;
+tbControls.maxDistance = 900;
+tbControls.rotateSpeed = 3;
 tbControls.zoomSpeed = 0.8;
 
 // Kick-off renderer
 (function animate() { // IIFE
   // Frame cycle
+  TWEEN.update();
   tbControls.update();
   renderer.render(scene, camera);
   requestAnimationFrame(animate);
 })();
+
+//transitions rotating camera position smoothly
+function tweenCamera(targetPosition, duration) {
+  tbControls.enabled = false;
+
+  var position = new THREE.Vector3().copy( camera.position );
+
+  var tween = new TWEEN.Tween(position)
+      .to(targetPosition, duration)
+      .onUpdate(function () {
+          camera.position.copy(position);
+          camera.lookAt( tbControls.target );
+      } )
+      .onComplete(function () {
+          camera.position.copy(targetPosition);
+          camera.lookAt(tbControls.target );
+          tbControls.enabled = true;
+      } )
+      .start();
+
+}
