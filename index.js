@@ -104,7 +104,7 @@ camera.position.z = 500;
 
 // Add camera controls
 const tbControls = new TrackballControls(camera, renderer.domElement);
-tbControls.minDistance = 150;
+tbControls.minDistance = 140;
 tbControls.maxDistance = 900;
 tbControls.rotateSpeed = 3;
 tbControls.zoomSpeed = 0.8;
