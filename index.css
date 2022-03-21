@@ -314,7 +314,7 @@ html, body {
 }
 
 #happyDot{
-  background: #F5DA70;
+  background: #F5DA6C;
 }
 
 #sadDot{
@@ -331,4 +331,35 @@ html, body {
 
 #scaredDot{
   background: #6C6C6C;
+}
+
+.downPrompt{
+  position: absolute;
+  opacity: 0;
+  z-index: 60;
+  pointer-events: none;
+  display: flex;
+  gap:1.3vh;
+  bottom:4vh;
+  justify-content: center;
+  align-content: center;
+  transition:  all 1s ease;
+  flex-direction: column;
+  transform:translate(-50%);
+  left:50%;
+}
+
+.downArrow{
+  height:5vh;
+  background-image: url("./textures/downArrow.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.downText{
+  color:#333333;
+  font-family: 'cabin-medium';
+  font-size: 2vh;
+  text-align: center;
 }
